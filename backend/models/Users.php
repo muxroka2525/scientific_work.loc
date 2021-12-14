@@ -18,18 +18,5 @@ use Yii;
  */
 class Users extends User
 {
-
-    public function beforeSave($insert){
-        if ($this->isNewRecord) {
-            $this->password = Yii::$app->security->generatePasswordHash($this->password);
-            $this->auth_key = Yii::$app->getSecurity()->generateRandomString();
-            $this->created_at = date("Y-m-d H:i");
-            $this->updated_at = date("Y-m-d H:i");
-            $this->status = 1;
-            
-        }
     
-        parent::beforeSave($insert);
-    }
-
 }

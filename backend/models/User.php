@@ -35,8 +35,8 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['login',  'password', 'fio'], 'required'],
-            [['login', 'password', 'fio'], 'string', 'max' => 255],
-            [['auth_key'], 'string', 'max' => 32],
+            [['login', 'password', 'fio', 'phone'], 'string', 'max' => 255],
+            // [['auth_key'], 'string', 'max' => 32],
             // [['password_reset_token'], 'unique'],
             [['login'], 'unique'],
         ];
@@ -58,5 +58,18 @@ class User extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'verification_token' => 'Verification Token',
         ];
+    }
+
+    public function beforeSave($insert){
+        if ($this->isNewRecord) {
+            $this->password = Yii::$app->security->generatePasswordHash($this->password);
+            $this->auth_key = Yii::$app->getSecurity()->generateRandomString();
+            $this->created_at = time();
+            $this->updated_at = time();
+            $this->status = 1;
+            
+        }
+    
+        return parent::beforeSave($insert);
     }
 }

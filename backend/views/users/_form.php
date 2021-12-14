@@ -20,11 +20,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'type')->textInput() ?>
+    <!-- <?=  $form->field($model, 'type')->textInput() ?> -->
 
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= $model->isNewRecord ? Html::submitButton('Save', ['class' => 'btn btn-success']) : Html::submitButton('Update', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
