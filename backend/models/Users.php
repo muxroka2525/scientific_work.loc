@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use app\models\User;
 use Yii;
 
 /**
@@ -15,42 +16,20 @@ use Yii;
  * @property int|null $type Тип
  * @property string|null $date_cr Дата создания
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends User
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return 'users';
+
+    public function beforeSave($insert){
+        if ($this->isNewRecord) {
+            $this->password = Yii::$app->security->generatePasswordHash($this->password);
+            $this->auth_key = Yii::$app->getSecurity()->generateRandomString();
+            $this->created_at = date("Y-m-d H:i");
+            $this->updated_at = date("Y-m-d H:i");
+            $this->status = 1;
+            
+        }
+    
+        parent::beforeSave($insert);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['type'], 'default', 'value' => null],
-            [['type'], 'integer'],
-            [['date_cr'], 'safe'],
-            [['login', 'password', 'fio', 'phone'], 'string', 'max' => 255],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'login' => 'Login',
-            'password' => 'Password',
-            'fio' => 'Fio',
-            'phone' => 'Phone',
-            'type' => 'Type',
-            'date_cr' => 'Date Cr',
-        ];
-    }
 }

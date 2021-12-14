@@ -22,7 +22,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'type')->textInput() ?>
 
-    <?= $form->field($model, 'date_cr')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -10,17 +10,21 @@ use yii\grid\GridView;
 $this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="users-index">
+<div class="container-fluid">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Users', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"><?= Html::encode($this->title) ?></h3>
+            <div class="card-tools">
+                <?= Html::a('Create Users', ['create'], ['class' => 'btn btn-success']) ?>
+            </div>
+        </div>
+        <div class="card-body">
+        <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -28,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'login',
-            'password',
+            // 'password',
             'fio',
             'phone',
             //'type',
@@ -36,7 +40,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+            ]); ?>
+        </div>
+    
+    </div>
 
 
 </div>

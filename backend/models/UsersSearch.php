@@ -18,7 +18,7 @@ class UsersSearch extends Users
     {
         return [
             [['id', 'type'], 'integer'],
-            [['login', 'password', 'fio', 'phone', 'date_cr'], 'safe'],
+            [['login', 'password', 'fio', 'phone', 'created_at'], 'safe'],
         ];
     }
 
@@ -60,7 +60,7 @@ class UsersSearch extends Users
         $query->andFilterWhere([
             'id' => $this->id,
             'type' => $this->type,
-            'date_cr' => $this->date_cr,
+            'created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['ilike', 'login', $this->login])

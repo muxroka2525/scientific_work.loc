@@ -9,12 +9,16 @@ $this->title = 'Create Users';
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="users-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+        <?= Html::encode($this->title) ?>
+        </div>
+        <div class="card-body">
+        <?= $this->render('_form', [
+            'model' => $model,
+        ]) ?>
+        </div>
+    </div>
 
 </div>

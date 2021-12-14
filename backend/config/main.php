@@ -22,13 +22,14 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-         'view' => [
-             'theme' => [
-             'pathMap' => [
-                    '@app/views' => '@backend/views/layouts'
-                    ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                   '@app/views' => '@backend/views'
+                //    '@app/views' => '@vendor/hail812/yii2-adminlte3/src/views'
                 ],
             ],
+       ],
         'request' => [
             'baseUrl'=>'/admin',
             'csrfParam' => '_csrf-backend',
